@@ -1,0 +1,4 @@
+#!/bin/bash
+nano ~/my_file.txt 
+chmod +x ~/my_file.txt
+cp ~/my_file.txt /tmp/

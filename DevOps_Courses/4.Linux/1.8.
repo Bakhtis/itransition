@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Введите имя каталога через /: "
+read directory
+    ls "$directory"

@@ -1,0 +1,11 @@
+#!/bin/bash/
+
+echo "введите имя файла : " 
+read filename
+
+if [ -f "$filename" ]; then
+    echo "Содержимое файла $filename : "
+    cat "$filename"
+
+else 
+    echo " Произошла ошибка. Файла не существует."

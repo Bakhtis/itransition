@@ -1,0 +1,9 @@
+!/bin/bash
+# if [ -f "$my_file.txt" ]; then
+rm ~/my_file.txt
+echo "File has been deleted" 
+
+# else
+# echo "file doesn't exist"  
+
+# fi

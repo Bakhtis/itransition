@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "Введите название файла : " 
+read filename
+
+if [ -f "$filename" ]; then
+    sed -i 's/error/warning/g' "$filename" 
+    echo "  "Error" сообщения были заменены на "warning" в файле $filename "
+else 
+    echo "Файл $filename не существует"
+
+fi
+

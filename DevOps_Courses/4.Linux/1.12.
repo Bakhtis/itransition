@@ -1,0 +1,11 @@
+#!/bin/bash
+error_files =$(grep -rl "error" /var/log)
+
+if [ -n "error_files" ]; then   
+    echo "Файлы с error в каталоге /var/log: "
+    echo "$error_files"
+
+else 
+    echo "Файлы с ошибками "error" не найдены в каталоге /var/log"
+
+fi 

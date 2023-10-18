@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "Введите название каталога : " 
+read directoryß 
+
+if [ -d "$directory" ]; then
+    echo "Содержимое каталога $directory: " 
+    ls "$directory"
+
+else 
+    echo "Произошла ошибка. Каталог $directory не найден"
+fi
+
