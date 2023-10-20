@@ -21,24 +21,26 @@ def user_choice(choices):
                 print_help(choices)
             else:
                 print("Неверный выбор. Пожалуйста, выберите один из вариантов: " + ', '.join(choices.values()) + ".")
-        except ValueError:
+        except:
             print("Неверный ввод. Пожалуйста, выберите один из вариантов:" +  ', '.join(choices.values()) + ".")
 
 
 def print_help(choices):
     print("Помощь:")
+    half_choices = len(choices)//2
+    num_choices = len(choices)
     table = PrettyTable([''] + list(choices.values()))
     max_length = max(len(choice) for choice in choices.values())
 
     for choice_num, choice in choices.items():
         outcomes = []
         for opponent_num, _ in choices.items():
-            if (choice_num - opponent_num) % len(choices) == 1:
-                outcome = 'Победа'
-            elif (choice_num - opponent_num) % len(choices) == 2:
+            if (choice_num - opponent_num) % num_choices == 0:
+                outcome = 'Ничья'
+            elif (choice_num - opponent_num) % num_choices <= half_choices:
                 outcome = 'Поражение'
             else:
-                outcome = 'Ничья'
+                outcome = 'Победа'
             outcomes.append(outcome)
         table.add_row([choice.ljust(max_length)] + outcomes)
 
