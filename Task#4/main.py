@@ -5,13 +5,10 @@ from uuid import uuid4
 
 app = FastAPI()
 
-# Sample user database (for demonstration purposes)
 users_db = {}
 
-# Password hashing context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# Registration form HTML
 registration_form = """
 <!doctype html>
 <html lang="en">
@@ -33,7 +30,6 @@ registration_form = """
 </html>
 """
 
-# Login form HTML
 login_form = """
 <!doctype html>
 <html lang="en">
@@ -56,12 +52,10 @@ login_form = """
 """
 
 
-# Endpoint to serve the registration form
 @app.get("/register", response_class=HTMLResponse)
 async def show_registration_form():
     return registration_form
 
-# Endpoint to handle user registration
 
 @app.post("/register", response_class=HTMLResponse)
 async def register(username: str = Form(...), password: str = Form(...)):
@@ -73,12 +67,10 @@ async def register(username: str = Form(...), password: str = Form(...)):
     }
     return RedirectResponse(url="/login")
 
-# Endpoint to serve the login form
 @app.get("/login", response_class=HTMLResponse)
 async def show_login_form():
     return login_form
 
-# Endpoint to handle user login
 @app.post("/login")
 async def login(username: str = Form(...), password: str = Form(...)):
     user = next((user_data for user_data in users_db.values() if user_data["username"] == username), None)
@@ -91,7 +83,6 @@ async def login(username: str = Form(...), password: str = Form(...)):
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
 
-# Endpoint for the user dashboard
 @app.get("/dashboard", response_class=HTMLResponse)
 async def user_dashboard():
     # Generate HTML for the table rows using registered users' data
@@ -99,7 +90,6 @@ async def user_dashboard():
     for user_id, user_data in users_db.items():
         table_rows += f"<tr><td>{user_id}</td><td>{user_data['username']}</td></tr>"
 
-    # User dashboard HTML with the dynamic table rows
     user_dashboard_html = f"""
     <!doctype html>
     <html lang="en">
